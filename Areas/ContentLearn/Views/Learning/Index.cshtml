@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Poznavacka.Data.DbSystem.Learning.LearningSet>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfItems)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Class)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfItems)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Class)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-LearningSetID="@item.LearningSetID">Edit</a> |
+                    <a onclick="return confirm('Jsi si jistý?')"
+                       asp-action="Delete"
+                       asp-route-LearningSetID="@item.LearningSetID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

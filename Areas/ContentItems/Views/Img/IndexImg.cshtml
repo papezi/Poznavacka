@@ -1,0 +1,64 @@
+﻿@model Poznavacka.Areas.ContentItems.Models.ViewModels.OrganismData
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Obrázky</h1>
+
+<h2>@Model.Name</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Obrázek</th>
+            <th>Popis</th>
+            <th>
+                <a asp-action="CreateImg" asp-route-taxon="Img"
+                   asp-route-kingdomID="@Model.KingdomID"
+                   asp-route-phylumID="@Model.PhylumID"
+                   asp-route-classID="@Model.ClassID"
+                   asp-route-orderID="@Model.OrderID"
+                   asp-route-familyID="@Model.FamilyID"
+                   asp-route-genusID="@Model.GenusID"
+                   asp-route-speciesID="@Model.SpeciesID">Create New</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Imgs)
+        {
+        <tr>
+            <td>
+                <img src="~/Images/@item.ImgPath" alt="@item.ImgDescription"
+                     height="100" asp-append-version="true">
+            </td>
+            <td>
+                @item.ImgDescription
+            </td>
+            <td>
+                <a onclick="return confirm('Jsi si jistý?')"
+                   asp-action="DeleteImg" asp-route-taxon="Img"
+                   asp-route-kingdomID="@Model.KingdomID"
+                   asp-route-phylumID="@Model.PhylumID"
+                   asp-route-classID="@Model.ClassID"
+                   asp-route-orderID="@Model.OrderID"
+                   asp-route-familyID="@Model.FamilyID"
+                   asp-route-genusID="@Model.GenusID"
+                   asp-route-speciesID="@Model.SpeciesID"
+                   asp-route-imgID="@item.ImgID">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-controller="Organisms" asp-action="Index"
+       asp-route-kingdomID="@Model.KingdomID"
+       asp-route-phylumID="@Model.PhylumID"
+       asp-route-classID="@Model.ClassID"
+       asp-route-orderID="@Model.OrderID"
+       asp-route-familyID="@Model.FamilyID"
+       asp-route-genusID="@Model.GenusID"
+       asp-route-speciesID="@Model.SpeciesID">Back to List</a>
+</div>
+

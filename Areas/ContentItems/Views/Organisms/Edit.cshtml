@@ -1,0 +1,121 @@
+﻿@model Poznavacka.Areas.ContentItems.Models.ViewModels.OrganismData
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>@Model.Taxon</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" onload="loadSingleSelects()">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Taxon" value="@Model.Taxon" />
+            <input type="hidden" asp-for="KingdomID" value="@Model.KingdomID" />
+            <input type="hidden" asp-for="PhylumID" value="@Model.PhylumID" />
+            <input type="hidden" asp-for="ClassID" value="@Model.ClassID" />
+            <input type="hidden" asp-for="OrderID" value="@Model.OrderID" />
+            <input type="hidden" asp-for="FamilyID" value="@Model.FamilyID" />
+            <input type="hidden" asp-for="GenusID" value="@Model.GenusID" />
+            <input type="hidden" asp-for="SpeciesID" value="@Model.SpeciesID" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" value="@Model.Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            @if (Model.GenusID != null)
+            {
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" value="@Model.Description" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Size" class="control-label"></label>
+                    <input asp-for="Size" class="form-control" value="@Model.Size" />
+                    <span asp-validation-for="Size" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Use" class="control-label"></label>
+                    <input asp-for="Use" class="form-control" value="@Model.Use" />
+                    <span asp-validation-for="Use" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Protection" class="control-label"></label>
+                    <select id="Protection" asp-for="Protection" class="form-control"
+                            asp-items="Html.GetEnumSelectList<ProtectionEnum>()"
+                            onload="my">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Ecosystems" class="control-label"></label>
+                    <select id="Ecosystems" asp-for="Ecosystems" class="form-control"
+                            asp-items="Html.GetEnumSelectList<EcosystemEnum>()" multiple>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EcoFunction" class="control-label"></label>
+                    <select id="EcoFunction" asp-for="EcoFunction" class="form-control"
+                            asp-items="Html.GetEnumSelectList<EcosystemFunctionEnum>()">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="OccurenceCR" class="control-label"></label>
+                    <select id="OccurenceCR" asp-for="OccurenceCR" class="form-control"
+                            asp-items="Html.GetEnumSelectList<OccurenceCREnum>()">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="OccurencesWorld" class="control-label"></label>
+                    <select id="OccurencesWorld" asp-for="OccurencesWorld" class="form-control"
+                            asp-items="Html.GetEnumSelectList<OccurenceWorldEnum>()" multiple>
+                    </select>
+                </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="Potvrdit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index"
+       asp-route-kingdomID="@Model.KingdomID"
+       asp-route-phylumID="@Model.PhylumID"
+       asp-route-classID="@Model.ClassID"
+       asp-route-orderID="@Model.OrderID"
+       asp-route-familyID="@Model.FamilyID"
+       asp-route-genusID="@Model.GenusID"
+       asp-route-speciesID="@Model.SpeciesID">Back to List</a>
+</div>
+
+@if (Model.GenusID != null)
+{
+    <script>
+        function loadSingleSelects() {
+            document.getElementById("Protection").selectedIndex = "@Model.Protection"
+            document.getElementById("EcoFunction").selectedIndex = "@Model.EcoFunction";
+            document.getElementById("OccurenceCR").selectedIndex = "@Model.OccurenceCR";
+        }
+    </script>
+    @foreach (EcosystemEnum item in Model.Ecosystems)
+    {
+        <script>
+            Html.document.getElementById("Ecosystems").selectedIndex = "item";
+        </script>
+    }
+    @foreach (OccurenceWorldEnum item in Model.OccurencesWorld)
+    {
+        <script>
+            Html.document.getElementById("OccurencesWorld").selectedIndex = "item";
+        </script>
+    }
+}
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

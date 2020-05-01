@@ -1,0 +1,69 @@
+﻿@model Poznavacka.Areas.ContentItems.Models.ViewModels.ImgData
+
+@{
+    ViewData["Title"] = "CreateImg";
+}
+
+<h1>CreateImg</h1>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateImg" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Taxon" value="@Model.Taxon" />
+            <input type="hidden" asp-for="KingdomID" value="@Model.KingdomID" />
+            <input type="hidden" asp-for="PhylumID" value="@Model.PhylumID" />
+            <input type="hidden" asp-for="ClassID" value="@Model.ClassID" />
+            <input type="hidden" asp-for="OrderID" value="@Model.OrderID" />
+            <input type="hidden" asp-for="FamilyID" value="@Model.FamilyID" />
+            <input type="hidden" asp-for="GenusID" value="@Model.GenusID" />
+            <input type="hidden" asp-for="SpeciesID" value="@Model.SpeciesID" />
+            <div class="form-group">
+                <label asp-for="ImgFile" class="control-label"></label>
+                <div class="custom-file">
+                    <input asp-for="ImgFile" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+                <span asp-validation-for="ImgFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImgName" class="control-label"></label>
+                <input asp-for="ImgName" class="form-control" />
+                <span asp-validation-for="ImgName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImgDescription" class="control-label"></label>
+                <input asp-for="ImgDescription" class="form-control" />
+                <span asp-validation-for="ImgDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImgType" class="control-label"></label>
+                <select multiple asp-for="ImgType" asp-items="Html.GetEnumSelectList<ImgTypeEnum>()" class="form-control">
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Potvrdit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="IndexImg"
+       asp-route-kingdomID="@Model.KingdomID"
+       asp-route-phylumID="@Model.PhylumID"
+       asp-route-classID="@Model.ClassID"
+       asp-route-orderID="@Model.OrderID"
+       asp-route-familyID="@Model.FamilyID"
+       asp-route-genusID="@Model.GenusID"
+       asp-route-speciesID="@Model.SpeciesID">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+}

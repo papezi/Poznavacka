@@ -1,0 +1,351 @@
+﻿@model Poznavacka.Areas.ContentItems.Models.ViewModels.ChosenTaxons
+
+@{
+    ViewData["Title"] = "Organisms";
+}
+
+<h1>Organismy</h1>
+<div class="table-responsive" style="width:800px">
+    <table class="table table-hover table-sm" >
+        <thead>
+            <tr>
+                <th>Říše</th>
+                <th><a asp-action="Create" asp-route-taxon="Říše">Vytvoř nový</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Kingdoms)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <a asp-action="Index"
+                           asp-route-kingdomID="@item.KingdomTID">Select</a> |
+                        <a asp-action="Edit" asp-route-taxon="Říše"
+                           asp-route-kingdomID="@item.KingdomTID">Edit</a> |
+                        <a asp-action="Delete" asp-route-taxon="Říše"
+                           asp-route-kingdomID="@item.KingdomTID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (Model.ChosenKingdom != null)
+    {
+        <h2>@Model.ChosenKingdom.Name</h2>
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>Kmen</th>
+                    <th>
+                        <a asp-action="Create" asp-route-taxon="Kmen"
+                           asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID">Create New</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ChosenKingdom.Phylums)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <a asp-action="Index"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@item.PhylumTID">Select</a> |
+                            <a asp-action="Edit" asp-route-taxon="Kmen"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@item.PhylumTID">Edit</a> |
+                            <a asp-action="Delete" asp-route-taxon="Kmen"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@item.PhylumTID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (Model.ChosenPhylum != null)
+    {
+        <h2>@Model.ChosenPhylum.Name</h2>
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>Třída</th>
+                    <th>
+                        <a asp-action="Create" asp-route-taxon="Třída"
+                           asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                           asp-route-phylumID="@Model.ChosenPhylum.PhylumTID">Create New</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ChosenPhylum.Classes)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <a asp-action="Index"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@item.ClassTID">Select</a> |
+                            <a asp-action="Edit" asp-route-taxon="Třída"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@item.ClassTID">Edit</a> |
+                            <a asp-action="Delete" asp-route-taxon="Třída"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@item.ClassTID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (Model.ChosenClass != null)
+    {
+        <h2>@Model.ChosenClass.Name</h2>
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>Řád</th>
+                    <th>
+                        <a asp-action="Create" asp-route-taxon="Řád"
+                           asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                           asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                           asp-route-classID="@Model.ChosenClass.ClassTID">Create New</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ChosenClass.Orders)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <a asp-action="Index"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@Model.ChosenClass.ClassTID"
+                               asp-route-orderID="@item.OrderTID">Select</a> |
+                            <a asp-action="Edit" asp-route-taxon="Řád"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@Model.ChosenClass.ClassTID"
+                               asp-route-orderID="@item.OrderTID">Edit</a> |
+                            <a asp-action="Delete" asp-route-taxon="Řád"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@Model.ChosenClass.ClassTID"
+                               asp-route-orderID="@item.OrderTID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (Model.ChosenOrder != null)
+    {
+        <h2>@Model.ChosenOrder.Name</h2>
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>Čeleď</th>
+                    <th>
+                        <a asp-action="Create" asp-route-taxon="Čeleď"
+                           asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                           asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                           asp-route-classID="@Model.ChosenClass.ClassTID"
+                           asp-route-orderID="@Model.ChosenOrder.OrderTID">Create New</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ChosenOrder.Families)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <a asp-action="Index"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@Model.ChosenClass.ClassTID"
+                               asp-route-orderID="@Model.ChosenOrder.OrderTID"
+                               asp-route-familyID="@item.FamilyTID">Select</a> |
+                            <a asp-action="Edit" asp-route-taxon="Čeleď"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@Model.ChosenClass.ClassTID"
+                               asp-route-orderID="@Model.ChosenOrder.OrderTID"
+                               asp-route-familyID="@item.FamilyTID">Edit</a> |
+                            <a asp-action="Delete" asp-route-taxon="Čeleď"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@Model.ChosenClass.ClassTID"
+                               asp-route-orderID="@Model.ChosenOrder.OrderTID"
+                               asp-route-familyID="@item.FamilyTID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (Model.ChosenFamily != null)
+    {
+        <h2>@Model.ChosenFamily.Name</h2>
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>Rod</th>
+                    <th>
+                        <a asp-action="Create" asp-route-taxon="Rod"
+                           asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                           asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                           asp-route-classID="@Model.ChosenClass.ClassTID"
+                           asp-route-orderID="@Model.ChosenOrder.OrderTID"
+                           asp-route-familyID="@Model.ChosenFamily.FamilyTID">Create New</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ChosenFamily.Genusses)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <a asp-action="Index"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@Model.ChosenClass.ClassTID"
+                               asp-route-orderID="@Model.ChosenOrder.OrderTID"
+                               asp-route-familyID="@Model.ChosenFamily.FamilyTID"
+                               asp-route-genusID="@item.GenusTID">Select</a> |
+                            <a asp-action="Edit" asp-route-taxon="Rod"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@Model.ChosenClass.ClassTID"
+                               asp-route-orderID="@Model.ChosenOrder.OrderTID"
+                               asp-route-familyID="@Model.ChosenFamily.FamilyTID"
+                               asp-route-genusID="@item.GenusTID">Edit</a> |
+                            <a asp-action="Delete" asp-route-taxon="Rod"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@Model.ChosenClass.ClassTID"
+                               asp-route-orderID="@Model.ChosenOrder.OrderTID"
+                               asp-route-familyID="@Model.ChosenFamily.FamilyTID"
+                               asp-route-genusID="@item.GenusTID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (Model.ChosenGenus != null)
+    {
+        <h2>@Model.ChosenGenus.Name</h2>
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>Druh</th>
+                    <th>
+                        <a asp-action="Create" asp-route-taxon="Druh"
+                           asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                           asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                           asp-route-classID="@Model.ChosenClass.ClassTID"
+                           asp-route-orderID="@Model.ChosenOrder.OrderTID"
+                           asp-route-familyID="@Model.ChosenFamily.FamilyTID"
+                           asp-route-genusID="@Model.ChosenGenus.GenusTID">Create New</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ChosenGenus.Species)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <a asp-action="IndexImg" asp-controller="Img"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@Model.ChosenClass.ClassTID"
+                               asp-route-orderID="@Model.ChosenOrder.OrderTID"
+                               asp-route-familyID="@Model.ChosenFamily.FamilyTID"
+                               asp-route-genusID="@Model.ChosenGenus.GenusTID"
+                               asp-route-speciesID="@item.SpeciesTID">Obrázky</a> |
+                            <a asp-action="Index"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@Model.ChosenClass.ClassTID"
+                               asp-route-orderID="@Model.ChosenOrder.OrderTID"
+                               asp-route-familyID="@Model.ChosenFamily.FamilyTID"
+                               asp-route-genusID="@Model.ChosenGenus.GenusTID"
+                               asp-route-speciesID="@item.SpeciesTID">Select</a> |
+                            <a asp-action="Edit" asp-route-taxon="Druh"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@Model.ChosenClass.ClassTID"
+                               asp-route-orderID="@Model.ChosenOrder.OrderTID"
+                               asp-route-familyID="@Model.ChosenFamily.FamilyTID"
+                               asp-route-genusID="@Model.ChosenGenus.GenusTID"
+                               asp-route-speciesID="@item.SpeciesTID">Edit</a> |
+                            <a asp-action="Delete" asp-route-taxon="Druh"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@Model.ChosenClass.ClassTID"
+                               asp-route-orderID="@Model.ChosenOrder.OrderTID"
+                               asp-route-familyID="@Model.ChosenFamily.FamilyTID"
+                               asp-route-genusID="@Model.ChosenGenus.GenusTID"
+                               asp-route-speciesID="@item.SpeciesTID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+@if (Model.ChosenSpecies != null)
+{
+    <h2>@Model.ChosenSpecies.Name</h2>
+    <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.ChosenSpecies.Description)</dt>
+    <dd class="col-sm-10"> @Html.DisplayFor(model => model.ChosenSpecies.Description)</dd>
+    <dt class="col-sm-2"> @Html.DisplayNameFor(model => model.ChosenSpecies.Size)</dt>
+    <dd class="col-sm-10">@Html.DisplayFor(model => model.ChosenSpecies.Size)</dd>
+    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.ChosenSpecies.Use)</dt>
+    <dd class="col-sm-10">@Html.DisplayFor(model => model.ChosenSpecies.Use)</dd>
+    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.ChosenSpecies.Protection)</dt>
+    <dd class="col-sm-10">@Html.DisplayFor(model => model.ChosenSpecies.Protection)</dd>
+    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.ChosenSpecies.Ecosystems)</dt>
+    <dd class="col-sm-10">@Html.DisplayFor(model => model.ChosenSpecies.Ecosystems)</dd>
+    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.ChosenSpecies.EcoFunction)</dt>
+    <dd class="col-sm-10">@Html.DisplayFor(model => model.ChosenSpecies.EcoFunction)</dd>
+    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.ChosenSpecies.OccurenceCR)</dt>
+    <dd class="col-sm-10">@Html.DisplayFor(model => model.ChosenSpecies.OccurenceCR)</dd>
+    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.ChosenSpecies.OccurencesWorld)</dt>
+    <dd class="col-sm-10">@Html.DisplayFor(model => model.ChosenSpecies.OccurencesWorld)</dd>
+
+}
+
+<script type="text/javascript">
+    window.scrollTo(0, document.body.scrollHeight);
+</script>
