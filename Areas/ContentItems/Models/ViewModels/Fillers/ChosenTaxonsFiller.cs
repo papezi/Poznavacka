@@ -18,7 +18,6 @@ namespace Poznavacka.Areas.ContentItems.Models.ViewModels.Fillers
                             .ThenInclude(i => i.Families)
                                 .ThenInclude(i => i.Genusses)
                                     .ThenInclude(i => i.Species)
-                                        .ThenInclude(i => i.Imgs)
                 .OrderBy(i => i.Name)
                 .ToListAsync()
             };
@@ -63,8 +62,8 @@ namespace Poznavacka.Areas.ContentItems.Models.ViewModels.Fillers
             {
                 viewModel.ChosenSpecies = viewModel.ChosenGenus.Species
                     .Single(x => x.SpeciesTID == OIDs.SpeciesID);
-                /*await _context.Entry(viewModel.ChosenSpecies)
-                    .Collection(x => x.Imgs).LoadAsync();*/
+                await _context.Entry(viewModel.ChosenSpecies)
+                    .Collection(x => x.Imgs).LoadAsync();
             }
 
             return viewModel;

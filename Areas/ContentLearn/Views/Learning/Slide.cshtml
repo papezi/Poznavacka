@@ -1,0 +1,53 @@
+﻿@model Poznavacka.Data.DbSystem.Learning.LearningSetItem
+
+@{
+    ViewData["Title"] = "Slide";
+    int next = ViewBag.item + 1;
+    int prev = ViewBag.item - 1;
+}
+
+<div class="flex-column">
+    <a class="btn btn-primary" asp-action="Slide"
+       asp-route-LearningSetID="@Model.LearningSetID"
+       asp-route-item="@prev">Předchozí</a>
+    <a class="btn btn-primary" asp-action="Slide"
+       asp-route-LearningSetID="@Model.LearningSetID"
+       asp-route-item="@next">Další</a>
+</div>
+<hr />
+
+<h1>@Model.Name</h1>
+<text>@Model.Classification</text>
+<div>
+    <div class="column left">
+        <dl class="row">
+            <dt> @Html.DisplayNameFor(model => model.Description)</dt>
+            <dd> @Html.DisplayFor(model => model.Description)</dd>
+            <dt> @Html.DisplayNameFor(model => model.Class)</dt>
+            <dd> @Html.DisplayFor(model => model.Class)</dd>
+            <dt> @Html.DisplayNameFor(model => model.Size)</dt>
+            <dd>@Html.DisplayFor(model => model.Size)</dd>
+            <dt>@Html.DisplayNameFor(model => model.Use)</dt>
+            <dd>@Html.DisplayFor(model => model.Use)</dd>
+            <dt>@Html.DisplayNameFor(model => model.Protection)</dt>
+            <dd>@Html.DisplayFor(model => model.Protection)</dd>
+            <dt>@Html.DisplayNameFor(model => model.Ecosystems)</dt>
+            <dd>@Html.DisplayFor(model => model.Ecosystems)</dd>
+            <dt>@Html.DisplayNameFor(model => model.EcoFunction)</dt>
+            <dd>@Html.DisplayFor(model => model.EcoFunction)</dd>
+            <dt>@Html.DisplayNameFor(model => model.OccurenceCR)</dt>
+            <dd>@Html.DisplayFor(model => model.OccurenceCR)</dd>
+            <dt>@Html.DisplayNameFor(model => model.OccurencesWorld)</dt>
+            <dd>@Html.DisplayFor(model => model.OccurencesWorld)</dd>
+        </dl>
+    </div>
+    <div class="column right">
+        <img src="~/Images/@Model.ImgPath" alt="@Model.ImgName"
+             asp-append-version="true">
+        <p>@Html.DisplayFor(model => model.ImgDescription)</p>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-controller="LearningSets">Zpět na seznam</a>
+</div>

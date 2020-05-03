@@ -49,6 +49,7 @@ namespace Poznavacka.Data.DbSystem.Learning
         public string ImgPath { get; set; }
 
         [MaxLength(100), Required]
+        [Display(Name = "Název obrázku")]
         public string ImgName { get; set; }
 
         [MaxLength(1000), Required]

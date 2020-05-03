@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Poznavacka.Data.DbSystem.Learning.LearningSet>
+
+@{
+    ViewData["Title"] = "Poznávačky";
+}
+
+<h1>Poznávačky</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfItems)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Class)
+            </th>
+            <th><a asp-action="Create">Nová poznávačka</a></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfItems)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Class)
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Slide" asp-controller="Learning"
+                       asp-route-LearningSetID="@item.LearningSetID"
+                       asp-route-itemID="0">Učit se</a>
+                    <a asp-action="Edit" asp-route-LearningSetID="@item.LearningSetID">Upravit</a> |
+                    <a onclick="return confirm('Jsi si jistý?')"
+                       asp-action="Delete"
+                       asp-route-LearningSetID="@item.LearningSetID">Smazat</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
