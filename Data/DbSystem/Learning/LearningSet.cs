@@ -21,7 +21,7 @@ namespace Poznavacka.Data.DbSystem.Learning
         public int NumberOfItems { get; set; }
 
         [Display(Name = "Třída"), Required]
-        public sbyte Class { get; set; }
+        public byte Class { get; set; }
 
         [EnumDataType(typeof(OccurenceCREnum)), Display(Name = "Výskyt ČR")]
         public OccurenceCREnum OccurenceCR { get; set; }

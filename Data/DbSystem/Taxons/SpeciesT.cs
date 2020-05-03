@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Poznavacka.Data.DbSystem.EnumClasses;
+using System.ComponentModel;
 
 namespace Poznavacka.Data.DbSystem.Taxons
 {
@@ -22,6 +23,12 @@ namespace Poznavacka.Data.DbSystem.Taxons
 
         [MaxLength(1000), Display(Name = "Popis")]
         public string Description { get; set; }
+
+        [Display(Name = "Třída"), Required]
+        public byte Class { get; set; }
+
+        [MaxLength(1000), Display(Name = "Zařazení"), Required]
+        public string Classification { get; set; }
 
         [MaxLength(200), Display(Name = "Velikost")]
         public string Size { get; set; }

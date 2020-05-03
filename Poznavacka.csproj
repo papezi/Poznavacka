@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\ContentLearn\Models\" />
     <Folder Include="Areas\ContentTest\Controllers\" />
     <Folder Include="Areas\ContentTest\Data\" />
     <Folder Include="Areas\ContentTest\Models\" />

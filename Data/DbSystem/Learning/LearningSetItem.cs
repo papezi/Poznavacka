@@ -18,6 +18,9 @@ namespace Poznavacka.Data.DbSystem.Learning
         [MaxLength(1000), Display(Name = "Popis")]
         public string Description { get; set; }
 
+        [Display(Name = "Třída"), Required]
+        public byte Class { get; set; }
+
         [MaxLength(1000), Display(Name = "Zařazení")]
         public string Classification { get; set; }
 
@@ -37,15 +40,22 @@ namespace Poznavacka.Data.DbSystem.Learning
         public OccurenceCREnum OccurenceCR { get; set; }
 
         [MaxLength(50), Display(Name = "Ochrana")]
-        public string Protection { get; set; }
+        public ProtectionEnum Protection { get; set; }
 
         [MaxLength(50), Display(Name = "Funkce v ekosystému")]
-        public string EcoFunction { get; set; }
+        public EcosystemFunctionEnum EcoFunction { get; set; }
 
-        [MaxLength(500)]
+        [MaxLength(500), Required]
         public string ImgPath { get; set; }
 
-        [MaxLength(1000), Display(Name = "Popis obrázku")]
+        [MaxLength(100), Required]
+        public string ImgName { get; set; }
+
+        [MaxLength(1000), Required]
+        [Display(Name = "Popis obrázku")]
         public string ImgDescription { get; set; }
+
+        [MaxLength(1000), Display(Name = "Obsah obrázku")]
+        public string ImgType { get; set; }
     }
 }

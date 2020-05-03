@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Poznavacka.Data;
 
 namespace Poznavacka.Migrations
 {
     [DbContext(typeof(OrganismDbContext))]
-    partial class OrganismDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200501152644_Learnin")]
+    partial class Learnin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,8 +62,8 @@ namespace Poznavacka.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<byte>("Class")
-                        .HasColumnType("tinyint");
+                    b.Property<short>("Class")
+                        .HasColumnType("smallint");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(1000)")
@@ -90,9 +92,6 @@ namespace Poznavacka.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<byte>("Class")
-                        .HasColumnType("tinyint");
-
                     b.Property<string>("Classification")
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
@@ -101,8 +100,8 @@ namespace Poznavacka.Migrations
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
 
-                    b.Property<int>("EcoFunction")
-                        .HasColumnType("int")
+                    b.Property<string>("EcoFunction")
+                        .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
                     b.Property<string>("Ecosystems")
@@ -110,23 +109,12 @@ namespace Poznavacka.Migrations
                         .HasMaxLength(1000);
 
                     b.Property<string>("ImgDescription")
-                        .IsRequired()
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
-
-                    b.Property<string>("ImgName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
 
                     b.Property<string>("ImgPath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
-
-                    b.Property<string>("ImgType")
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
 
                     b.Property<int>("LearningSetID")
                         .HasColumnType("int");
@@ -143,8 +131,8 @@ namespace Poznavacka.Migrations
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
 
-                    b.Property<int>("Protection")
-                        .HasColumnType("int")
+                    b.Property<string>("Protection")
+                        .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
                     b.Property<string>("Size")
@@ -295,14 +283,6 @@ namespace Poznavacka.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<byte>("Class")
-                        .HasColumnType("tinyint");
-
-                    b.Property<string>("Classification")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(1000)")

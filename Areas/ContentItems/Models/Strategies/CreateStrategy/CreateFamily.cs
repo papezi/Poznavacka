@@ -11,7 +11,7 @@ namespace Poznavacka.Areas.ContentItems.Models.Strategies.CreateStrategy
     {
         public override string RequiredCase { get { return "Čeleď"; } }
 
-        public override async Task Execute(OrganismData model, OrganismDbContext _context)
+        public override async Task<int> Execute(OrganismData model, OrganismDbContext _context)
         {
             FamilyT newFamily = new FamilyT()
             {
@@ -26,6 +26,7 @@ namespace Poznavacka.Areas.ContentItems.Models.Strategies.CreateStrategy
                 .Single(i => i.OrderTID == model.OrderID).Families
                 .Add(newFamily);
             await _context.SaveChangesAsync();
+            return newFamily.FamilyTID;
         }
     }
 }

@@ -173,7 +173,6 @@ C:\Users\Ondra\Desktop\Projekt\Poznavacka\Poznavacka\bin\Debug\netcoreapp3.1\zh-
 C:\Users\Ondra\Desktop\Projekt\Poznavacka\Poznavacka\obj\Debug\netcoreapp3.1\Poznavacka.csproj.CoreCompileInputs.cache
 C:\Users\Ondra\Desktop\Projekt\Poznavacka\Poznavacka\obj\Debug\netcoreapp3.1\Poznavacka.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Ondra\Desktop\Projekt\Poznavacka\Poznavacka\obj\Debug\netcoreapp3.1\Poznavacka.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Ondra\Desktop\Projekt\Poznavacka\Poznavacka\obj\Debug\netcoreapp3.1\Poznavacka.csprojAssemblyReference.cache
 C:\Users\Ondra\Desktop\Projekt\Poznavacka\Poznavacka\obj\Debug\netcoreapp3.1\Razor\Areas\ContentItems\Views\Img\CreateImg.cshtml.g.cs
 C:\Users\Ondra\Desktop\Projekt\Poznavacka\Poznavacka\obj\Debug\netcoreapp3.1\Razor\Areas\ContentItems\Views\Img\IndexImg.cshtml.g.cs
 C:\Users\Ondra\Desktop\Projekt\Poznavacka\Poznavacka\obj\Debug\netcoreapp3.1\Razor\Areas\ContentItems\Views\Organisms\Create.cshtml.g.cs
@@ -186,3 +185,6 @@ C:\Users\Ondra\Desktop\Projekt\Poznavacka\Poznavacka\obj\Debug\netcoreapp3.1\Raz
 C:\Users\Ondra\Desktop\Projekt\Poznavacka\Poznavacka\obj\Debug\netcoreapp3.1\Razor\Areas\ContentLearn\Views\Learning\Index.cshtml.g.cs
 C:\Users\Ondra\Desktop\Projekt\Poznavacka\Poznavacka\obj\Debug\netcoreapp3.1\Razor\Areas\ContentItems\Views\_ViewStart.cshtml.g.cs
 C:\Users\Ondra\Desktop\Projekt\Poznavacka\Poznavacka\obj\Debug\netcoreapp3.1\Razor\Areas\ContentItems\Views\_ViewImports.cshtml.g.cs
+C:\Users\Ondra\Desktop\Projekt\Poznavacka\Poznavacka\obj\Debug\netcoreapp3.1\Razor\Areas\ContentLearn\Views\SetSource\SourceIndex.cshtml.g.cs
+C:\Users\Ondra\Desktop\Projekt\Poznavacka\Poznavacka\obj\Debug\netcoreapp3.1\Razor\Areas\ContentLearn\Views\_ViewImports.cshtml.g.cs
+C:\Users\Ondra\Desktop\Projekt\Poznavacka\Poznavacka\obj\Debug\netcoreapp3.1\Razor\Areas\ContentLearn\Views\_ViewStart.cshtml.g.cs

@@ -21,7 +21,7 @@ namespace Poznavacka.Areas.ContentLearn.Controllers
         // GET: Learning
         public async Task<IActionResult> Index()
         {
-            return View(await _context.LearningSet.ToListAsync());
+            return View(await _context.LearningSets.ToListAsync());
         }
 
         // GET: Learning/Details/5
@@ -32,7 +32,7 @@ namespace Poznavacka.Areas.ContentLearn.Controllers
                 return NotFound();
             }
 
-            var learningSet = await _context.LearningSet
+            LearningSet learningSet = await _context.LearningSets
                 .FirstOrDefaultAsync(m => m.LearningSetID == LearningSetID);
             if (learningSet == null)
             {
@@ -56,27 +56,27 @@ namespace Poznavacka.Areas.ContentLearn.Controllers
             LearningSet newSet = new LearningSet();
             if (await TryUpdateModelAsync(newSet))
             {
-                _context.Add(newSet);
+                _context.LearningSets.Add(newSet);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-
-            return RedirectToAction("Edit",
+                return RedirectToAction("Edit",
                 routeValues: new
                 {
                     newSet.LearningSetID
                 });
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Learning/Edit/5
-        public async Task<IActionResult> Edit(int? LearningSetID)
+        public async Task<IActionResult> Edit(int? learningSetID)
         {
-            if (LearningSetID == null)
+            if (learningSetID == null)
             {
                 return NotFound();
             }
 
-            var learningSet = await _context.LearningSet.FindAsync(LearningSetID);
+            var learningSet = await _context.LearningSets.Include(x => x.Items)
+                .FirstAsync(x => x.LearningSetID == learningSetID);
             if (learningSet == null)
             {
                 return NotFound();
@@ -94,21 +94,25 @@ namespace Poznavacka.Areas.ContentLearn.Controllers
             {
                 try
                 {
-                    //await new EditStrategyContext().Edit(organism, _context);
+                    LearningSet oldSet = _context.LearningSets.Single(x => x.LearningSetID == set.LearningSetID);
+                    oldSet.Name = set.Name;
+                    oldSet.Description = set.Description;
+                    oldSet.Class = set.Class;
+                    await _context.SaveChangesAsync();
                 }
                 catch (ArgumentException)
                 {
                     return NotFound();
                 }
             }
-            return View(set);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Learning/Delete/5
         public async Task<IActionResult> Delete(int? LearningSetID)
         {
-            var learningSet = await _context.LearningSet.FindAsync(LearningSetID);
-            _context.LearningSet.Remove(learningSet);
+            var learningSet = await _context.LearningSets.FindAsync(LearningSetID);
+            _context.LearningSets.Remove(learningSet);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -116,16 +120,11 @@ namespace Poznavacka.Areas.ContentLearn.Controllers
         // GET: Learning/DeleteItem/5
         public async Task<IActionResult> DeleteItem(int? learningSetID, int? learningSetItemID)
         {
-            _context.Remove(_context.LearningSet.Include(x => x.Items)
+            _context.Remove(_context.LearningSets.Include(x => x.Items)
                  .First(x => x.LearningSetID == learningSetID).Items
                  .FirstOrDefault(x => x.LearningSetItemID == learningSetItemID));
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool LearningSetExists(int id)
-        {
-            return _context.LearningSet.Any(e => e.LearningSetID == id);
         }
     }
 }

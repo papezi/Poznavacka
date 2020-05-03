@@ -25,6 +25,7 @@ namespace Poznavacka.Areas.ContentItems.Models.Strategies.EditStrategy
                 .Single(i => i.SpeciesTID == model.SpeciesID);
             oldSpecies.Name = model.Name;
             oldSpecies.Description = model.Description;
+            oldSpecies.Class = model.Class;
             oldSpecies.Size = model.Size;
             oldSpecies.Use = model.Use;
             oldSpecies.OccurenceCR = model.OccurenceCR;

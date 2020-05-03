@@ -9,7 +9,7 @@ namespace Poznavacka.Areas.ContentItems.Models.Strategies
 {
     public class CreateStrategyContext
     {
-        public async Task Create(OrganismData model, OrganismDbContext _context)
+        public async Task<int> Create(OrganismData model, OrganismDbContext _context)
         {
             var action = typeof(CreateBase).Assembly.GetTypes()
                     .Where(t => t.IsSubclassOf(typeof(CreateBase)) && !t.IsAbstract)
@@ -21,7 +21,7 @@ namespace Poznavacka.Areas.ContentItems.Models.Strategies
                 throw new ArgumentException("Unknown case.");
             }
 
-            await action.Execute(model, _context);
+            return await action.Execute(model, _context);
         }
     }
 }

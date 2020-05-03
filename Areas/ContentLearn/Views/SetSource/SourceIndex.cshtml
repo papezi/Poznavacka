@@ -1,0 +1,258 @@
+﻿@model Poznavacka.Areas.ContentItems.Models.ViewModels.ChosenTaxons
+
+@{
+    ViewData["Title"] = "Organisms";
+}
+
+<h1>Vyber sadu</h1>
+<div class="table-responsive" style="width:800px">
+    <table class="table table-hover table-sm">
+        <thead>
+            <tr>
+                <th>Říše</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Kingdoms)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <a asp-action="SourceIndex"
+                           asp-route-LearningSetID="@ViewBag.LearningSetID"
+                           asp-route-kingdomID="@item.KingdomTID">Rozbal</a> |
+                        <a asp-action="AddSource" asp-route-taxon="Říše"
+                           asp-route-LearningSetID="@ViewBag.LearningSetID"
+                           asp-route-kingdomID="@item.KingdomTID">Přidej do poznávačky</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (Model.ChosenKingdom != null)
+    {
+        <h2>@Model.ChosenKingdom.Name</h2>
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>Kmen</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ChosenKingdom.Phylums)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <a asp-action="SourceIndex"
+                               asp-route-LearningSetID="@ViewBag.LearningSetID"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@item.PhylumTID">Rozbal</a> |
+                            <a asp-action="AddSource" asp-route-taxon="Kmen"
+                               asp-route-LearningSetID="@ViewBag.LearningSetID"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@item.PhylumTID">Přidej do poznávačky</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (Model.ChosenPhylum != null)
+    {
+        <h2>@Model.ChosenPhylum.Name</h2>
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>Třída</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ChosenPhylum.Classes)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <a asp-action="SourceIndex"
+                               asp-route-LearningSetID="@ViewBag.LearningSetID"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@item.ClassTID">Rozbal</a> |
+                            <a asp-action="AddSource" asp-route-taxon="Třída"
+                               asp-route-LearningSetID="@ViewBag.LearningSetID"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@item.ClassTID">Přidej do poznávačky</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (Model.ChosenClass != null)
+    {
+        <h2>@Model.ChosenClass.Name</h2>
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>Řád</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ChosenClass.Orders)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <a asp-action="SourceIndex"
+                               asp-route-LearningSetID="@ViewBag.LearningSetID"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@Model.ChosenClass.ClassTID"
+                               asp-route-orderID="@item.OrderTID">Rozbal</a> |
+                            <a asp-action="AddSource" asp-route-taxon="Řád"
+                               asp-route-LearningSetID="@ViewBag.LearningSetID"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@Model.ChosenClass.ClassTID"
+                               asp-route-orderID="@item.OrderTID">Přidej do poznávačky</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (Model.ChosenOrder != null)
+    {
+        <h2>@Model.ChosenOrder.Name</h2>
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>Čeleď</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ChosenOrder.Families)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <a asp-action="SourceIndex"
+                               asp-route-LearningSetID="@ViewBag.LearningSetID"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@Model.ChosenClass.ClassTID"
+                               asp-route-orderID="@Model.ChosenOrder.OrderTID"
+                               asp-route-familyID="@item.FamilyTID">Rozbal</a> |
+                            <a asp-action="AddSource" asp-route-taxon="Čeleď"
+                               asp-route-LearningSetID="@ViewBag.LearningSetID"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@Model.ChosenClass.ClassTID"
+                               asp-route-orderID="@Model.ChosenOrder.OrderTID"
+                               asp-route-familyID="@item.FamilyTID">Přidej do poznávačky</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (Model.ChosenFamily != null)
+    {
+        <h2>@Model.ChosenFamily.Name</h2>
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>Rod</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ChosenFamily.Genusses)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <a asp-action="SourceIndex"
+                               asp-route-LearningSetID="@ViewBag.LearningSetID"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@Model.ChosenClass.ClassTID"
+                               asp-route-orderID="@Model.ChosenOrder.OrderTID"
+                               asp-route-familyID="@Model.ChosenFamily.FamilyTID"
+                               asp-route-genusID="@item.GenusTID">Rozbal</a> |
+                            <a asp-action="AddSource" asp-route-taxon="Rod"
+                               asp-route-LearningSetID="@ViewBag.LearningSetID"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@Model.ChosenClass.ClassTID"
+                               asp-route-orderID="@Model.ChosenOrder.OrderTID"
+                               asp-route-familyID="@Model.ChosenFamily.FamilyTID"
+                               asp-route-genusID="@item.GenusTID">Přidej do poznávačky</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (Model.ChosenGenus != null)
+    {
+        <h2>@Model.ChosenGenus.Name</h2>
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>Druh</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ChosenGenus.Species)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <a asp-action="AddSource" asp-route-taxon="Druh"
+                               asp-route-LearningSetID="@ViewBag.LearningSetID"
+                               asp-route-kingdomID="@Model.ChosenKingdom.KingdomTID"
+                               asp-route-phylumID="@Model.ChosenPhylum.PhylumTID"
+                               asp-route-classID="@Model.ChosenClass.ClassTID"
+                               asp-route-orderID="@Model.ChosenOrder.OrderTID"
+                               asp-route-familyID="@Model.ChosenFamily.FamilyTID"
+                               asp-route-genusID="@Model.ChosenGenus.GenusTID"
+                               asp-route-speciesID="@item.SpeciesTID">Přidej do poznávačky</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+<script type="text/javascript">
+    window.scrollTo(0, document.body.scrollHeight);
+</script>

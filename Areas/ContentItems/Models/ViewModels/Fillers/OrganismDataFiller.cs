@@ -46,6 +46,8 @@ namespace Poznavacka.Areas.ContentItems.Models.ViewModels.Fillers
             {
                 viewModel.Name = taxons.ChosenSpecies.Name;
                 viewModel.Description = taxons.ChosenSpecies.Description;
+                viewModel.Class = taxons.ChosenSpecies.Class;
+                viewModel.Classification = taxons.ChosenSpecies.Classification;
                 viewModel.Size = taxons.ChosenSpecies.Size;
                 viewModel.Use = taxons.ChosenSpecies.Use;
                 viewModel.OccurenceCR = taxons.ChosenSpecies.OccurenceCR;
@@ -57,7 +59,6 @@ namespace Poznavacka.Areas.ContentItems.Models.ViewModels.Fillers
                     .Select(x => (OccurenceWorldEnum)Enum.Parse(typeof(OccurenceWorldEnum), x)).ToArray();
                 viewModel.Imgs = taxons.ChosenSpecies.Imgs;
             }
-
             return viewModel;
         }
     }

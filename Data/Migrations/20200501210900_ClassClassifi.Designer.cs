@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Poznavacka.Data;
 
 namespace Poznavacka.Migrations
 {
     [DbContext(typeof(OrganismDbContext))]
-    partial class OrganismDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200501210900_ClassClassifi")]
+    partial class ClassClassifi
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

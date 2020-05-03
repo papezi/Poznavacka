@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<Poznavacka.Data.DbSystem.Learning.LearningSet>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Poznávačky";
 }
 
-<h1>Index</h1>
+<h1>Poznávačky</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -21,7 +18,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Class)
             </th>
-            <th></th>
+            <th><a asp-action="Create">Nová poznávačka</a></th>
         </tr>
     </thead>
     <tbody>
@@ -38,10 +35,10 @@
                     @Html.DisplayFor(modelItem => item.Class)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-LearningSetID="@item.LearningSetID">Edit</a> |
+                    <a asp-action="Edit" asp-route-LearningSetID="@item.LearningSetID">Upravit</a> |
                     <a onclick="return confirm('Jsi si jistý?')"
                        asp-action="Delete"
-                       asp-route-LearningSetID="@item.LearningSetID">Delete</a>
+                       asp-route-LearningSetID="@item.LearningSetID">Smazat</a>
                 </td>
             </tr>
         }

@@ -46,19 +46,31 @@ namespace Poznavacka.Areas.ContentItems.Controllers
         public async Task<IActionResult> CreatePost()
         {
             OrganismData organism = new OrganismData();
-            if (await TryUpdateModelAsync(organism))
+            await TryUpdateModelAsync(organism);
+            try
             {
-                try
+                int SpeciesID = await new CreateStrategyContext().Create(organism, _context);
+                if (organism.Taxon == "Druh")
                 {
-                    await new CreateStrategyContext().Create(organism, _context);
-                }
-                catch (ArgumentException)
-                {
-                    return NotFound();
+                    return RedirectToAction("IndexImg", "Img",
+                    routeValues: new
+                    {
+                        organism.KingdomID,
+                        organism.PhylumID,
+                        organism.ClassID,
+                        organism.OrderID,
+                        organism.FamilyID,
+                        organism.GenusID,
+                        SpeciesID
+                    });
                 }
             }
+            catch (ArgumentException)
+            {
+                return NotFound();
+            }
 
-            return RedirectToAction("IndexImg", "Img",
+            return RedirectToAction("Index",
                 routeValues: new
                 {
                     organism.KingdomID,

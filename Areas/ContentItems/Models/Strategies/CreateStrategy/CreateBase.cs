@@ -9,7 +9,7 @@ namespace Poznavacka.Areas.ContentItems.Models.Strategies.CreateStrategy
     {
         public abstract string RequiredCase { get; }
 
-        public abstract Task Execute(OrganismData organism, OrganismDbContext _context);
+        public abstract Task<int> Execute(OrganismData organism, OrganismDbContext _context);
 
         public bool ShouldExecute(string inputCase)
         {

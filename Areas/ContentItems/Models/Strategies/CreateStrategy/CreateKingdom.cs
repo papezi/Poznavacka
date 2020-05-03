@@ -9,7 +9,7 @@ namespace Poznavacka.Areas.ContentItems.Models.Strategies.CreateStrategy
     {
         public override string RequiredCase { get { return "Říše"; } }
 
-        public override async Task Execute(OrganismData model, OrganismDbContext _context)
+        public override async Task<int> Execute(OrganismData model, OrganismDbContext _context)
         {
             KingdomT newKingdom = new KingdomT
             {
@@ -17,6 +17,7 @@ namespace Poznavacka.Areas.ContentItems.Models.Strategies.CreateStrategy
             };
             _context.Kingdoms.Add(newKingdom);
             await _context.SaveChangesAsync();
+            return newKingdom.KingdomTID;
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Poznavacka.Areas.ContentItems.Models.Strategies.CreateStrategy
     {
         public override string RequiredCase { get { return "Rod"; } }
 
-        public override async Task Execute(OrganismData model, OrganismDbContext _context)
+        public override async Task<int> Execute(OrganismData model, OrganismDbContext _context)
         {
             GenusT newGenus = new GenusT()
             {
@@ -27,6 +27,7 @@ namespace Poznavacka.Areas.ContentItems.Models.Strategies.CreateStrategy
                 .Single(i => i.FamilyTID == model.FamilyID).Genusses
                 .Add(newGenus);
             await _context.SaveChangesAsync();
+            return newGenus.GenusTID;
         }
     }
 }

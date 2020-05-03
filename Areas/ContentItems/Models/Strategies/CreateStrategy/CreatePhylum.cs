@@ -11,7 +11,7 @@ namespace Poznavacka.Areas.ContentItems.Models.Strategies.CreateStrategy
     {
         public override string RequiredCase { get { return "Kmen"; } }
 
-        public override async Task Execute(OrganismData model, OrganismDbContext _context)
+        public override async Task<int> Execute(OrganismData model, OrganismDbContext _context)
         {
             PhylumT newPhylum = new PhylumT()
             {
@@ -21,6 +21,7 @@ namespace Poznavacka.Areas.ContentItems.Models.Strategies.CreateStrategy
                 .Single(i => i.KingdomTID == model.KingdomID).Phylums
                 .Add(newPhylum);
             await _context.SaveChangesAsync();
+            return newPhylum.PhylumTID;
         }
     }
 }
