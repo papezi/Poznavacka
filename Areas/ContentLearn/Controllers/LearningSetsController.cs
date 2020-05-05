@@ -105,7 +105,11 @@ namespace Poznavacka.Areas.ContentLearn.Controllers
                     return NotFound();
                 }
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Edit",
+                routeValues: new
+                {
+                    set.LearningSetID
+                });
         }
 
         // GET: Learning/Delete/5
@@ -127,9 +131,11 @@ namespace Poznavacka.Areas.ContentLearn.Controllers
             _context.LearningSets.Single(x => x.LearningSetID == learningSetID).NumberOfItems -= 1;
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Edit",
+                routeValues: new
+                {
+                    learningSetID
+                });
         }
-
-
     }
 }

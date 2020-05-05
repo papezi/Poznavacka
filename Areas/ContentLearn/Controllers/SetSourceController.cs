@@ -42,7 +42,7 @@ namespace Poznavacka.Areas.ContentLearn.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToAction("Edit", "Learning",
+            return RedirectToAction("Edit", "LearningSets",
                 routeValues: new
                 {
                     source.LearningSetID

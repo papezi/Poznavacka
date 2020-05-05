@@ -5,7 +5,6 @@ using Poznavacka.Data.DbSystem.Learning;
 using Poznavacka.Data.DbSystem.Taxons;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace Poznavacka.Areas.ContentLearn.Models.ViewModels
@@ -32,6 +31,11 @@ namespace Poznavacka.Areas.ContentLearn.Models.ViewModels
 
             foreach (LearningSetItem item in setItems)
             {
+
+                if (set.Items.Where(x => x.ImgPath == item.ImgPath).Count() != 0)
+                {
+                    continue;
+                }
                 if (ItemValidator.Validate(set, item))
                 {
                     set.Items.Add(item);
